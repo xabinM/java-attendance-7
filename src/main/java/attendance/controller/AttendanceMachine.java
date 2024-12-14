@@ -21,25 +21,23 @@ public class AttendanceMachine {
     }
 
     private String processRequestFunctionInput() {
-        while (true){
-            try {
-                OutputView.printTodayAndRequestChoiceFunction();
-                OutputView.printFunctionList();
-                return InputView.requestFunctionNumber();
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+        try {
+            OutputView.printTodayAndRequestChoiceFunction();
+            OutputView.printFunctionList();
+            return InputView.requestFunctionNumber();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
+        return "";
     }
 
     private void processSortInput(String input) {
         if (input.equals("1")) {
             try {
-                OutputView.validateHoliday();
+//                OutputView.validateHoliday();
                 processCheckAttendance();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-                processRequestFunctionInput();
             }
         }
     }
@@ -53,6 +51,7 @@ public class AttendanceMachine {
             Crew crew = new Crew(name, 2024, 12, DateTimes.now().getDayOfMonth(),
                     DayOfWeek.getDayOfWeek(DateTimes.now().getDayOfWeek().getValue()), time);
             attendanceRepository.saveCrewInRepository(crew);
+            OutputView.printAttendanceInfo(crew);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }

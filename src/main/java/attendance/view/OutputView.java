@@ -1,5 +1,6 @@
 package attendance.view;
 
+import attendance.model.Crew;
 import attendance.model.DayOfWeek;
 import camp.nextstep.edu.missionutils.DateTimes;
 
@@ -27,8 +28,9 @@ public class OutputView {
         System.out.println("등교 시간을 입력해 주세요.");
     }
 
-    public static void printAttendanceInfo() {
-        System.out.println();
+    public static void printAttendanceInfo(Crew crew) {
+        System.out.printf("12월 %d일 %s %s (%s)",
+                DateTimes.now().getDayOfMonth(), crew.getDayOfWeek(), crew.getTime(), crew.getStatus());
     }
 
     public static void validateHoliday() {
@@ -39,4 +41,5 @@ public class OutputView {
             throw new IllegalArgumentException(errorMessage);
         }
     }
+
 }

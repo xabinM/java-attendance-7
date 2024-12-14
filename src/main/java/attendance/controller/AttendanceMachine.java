@@ -41,7 +41,16 @@ public class AttendanceMachine {
             }
         } else if (input.equals("2")) {
             processEdit();
+        } else if (input.equals("3")) {
+            processCrewReport();
         }
+    }
+
+    private void processCrewReport() {
+        OutputView.requestNickname();
+        String name = InputView.requestNickname();
+        OutputView.printReport(name);
+        OutputView.printCrewInfo(attendanceRepository.findCrewInfo(name));
     }
 
     private void processCheckAttendance() {

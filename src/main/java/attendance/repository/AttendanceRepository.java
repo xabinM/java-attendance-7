@@ -7,6 +7,7 @@ import attendance.service.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AttendanceRepository {
     private final List<Crew> repository = new ArrayList<>();
@@ -53,5 +54,11 @@ public class AttendanceRepository {
                 .filter(crew -> crew.getDay() == targetDay)
                 .findFirst()
                 .get();
+    }
+
+    public List<Crew> findCrewInfo(String targetName) {
+        return repository.stream()
+                .filter(crew -> crew.getName().equals(targetName))
+                .toList();
     }
 }

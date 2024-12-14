@@ -4,6 +4,8 @@ import attendance.model.Crew;
 import attendance.model.DayOfWeek;
 import camp.nextstep.edu.missionutils.DateTimes;
 
+import java.util.List;
+
 public class OutputView {
 
     public static void printTodayAndRequestChoiceFunction() {
@@ -48,5 +50,15 @@ public class OutputView {
     public static void printEditMessage4(Crew crew) {
         System.out.printf("12월 %d일 %s %s (%s) -> %s (%s) 수정 완료!", crew.getDay(), crew.getDayOfWeek(),
                 crew.getPreTime(), crew.getPreStatus(), crew.getTime(), crew.getStatus());
+    }
+
+    public static void printReport(String name) {
+        System.out.printf("이번 달 %s의 출석 기록입니다.", name);
+    }
+
+    public static void printCrewInfo(List<Crew> crews){
+        for (Crew crew : crews) {
+            System.out.printf("12월 %d일 %s %s (%s)\n", crew.getDay(), crew.getDayOfWeek(), crew.getTime(), crew.getStatus());
+        }
     }
 }

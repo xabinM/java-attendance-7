@@ -34,7 +34,7 @@ public class AttendanceMachine {
     private void processSortInput(String input) {
         if (input.equals("1")) {
             try {
-//                validateHoliday();
+                validateHoliday();
                 processCheckAttendance();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

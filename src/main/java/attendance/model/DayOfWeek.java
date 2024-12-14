@@ -1,5 +1,7 @@
 package attendance.model;
 
+import java.util.stream.Stream;
+
 public enum DayOfWeek {
     MONDAY(1, "월요일"),
     TUESDAY(2, "화요일"),
@@ -15,5 +17,13 @@ public enum DayOfWeek {
     DayOfWeek(int number, String dayOfWeek) {
         this.number = number;
         this.dayOfWeek = dayOfWeek;
+    }
+
+    public static String getDayOfWeek(int target) {
+        return Stream.of(values())
+                .filter(day -> day.number == target)
+                .findFirst()
+                .map(day -> day.dayOfWeek)
+                .get();
     }
 }

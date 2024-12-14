@@ -8,7 +8,7 @@ public class Crew {
     private final String dayOfWeek;
     private String time;
     private String status;
-    private int preTime;
+    private String preTime;
     private String preStatus;
 
     public Crew(String name, int year, int month, int day, String dayOfWeek, String time) {
@@ -18,10 +18,10 @@ public class Crew {
         this.day = day;
         this.dayOfWeek = dayOfWeek;
         this.time = time;
-        this.status = calculateStatus(dayOfWeek, time);
+        this.status = calculateStatus(time);
     }
 
-    private String calculateStatus(String dayOfWeek, String time) {
+    private String calculateStatus(String time) {
         String temp = time.replace(":", "");
         if (dayOfWeek.equals("월요일")) {
             if (Integer.parseInt(temp) <= 1305) {
@@ -33,6 +33,7 @@ public class Crew {
             }
         } else {
             if (Integer.parseInt(temp) <= 1005) {
+                System.out.println("타아임" + time);
                 return "출석";
             } else if (Integer.parseInt(temp) > 1005) {
                 return "지각";
@@ -59,7 +60,22 @@ public class Crew {
         return time;
     }
 
+    public void setTime(String targetTime) {
+        this.preTime = time;
+        this.preStatus = status;
+        this.time = targetTime;
+        this.status = calculateStatus(targetTime);
+    }
+
     public String getStatus() {
         return status;
+    }
+
+    public String getPreTime() {
+        return preTime;
+    }
+
+    public String getPreStatus() {
+        return preStatus;
     }
 }

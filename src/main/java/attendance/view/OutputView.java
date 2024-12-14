@@ -33,13 +33,20 @@ public class OutputView {
                 DateTimes.now().getDayOfMonth(), crew.getDayOfWeek(), crew.getTime(), crew.getStatus());
     }
 
-    public static void validateHoliday() {
-        String errorMessage = String.format("[ERROR] %d월 %d일 %s은 등교일이 아닙니다.", DateTimes.now().getMonthValue(), DateTimes.now().getDayOfMonth(),
-                DayOfWeek.getDayOfWeek(DateTimes.now().getDayOfWeek().getValue()));
-        if (DayOfWeek.getDayOfWeek(DateTimes.now().getDayOfWeek().getValue()).equals("토요일") ||
-                DayOfWeek.getDayOfWeek(DateTimes.now().getDayOfWeek().getValue()).equals("일요일")) {
-            throw new IllegalArgumentException(errorMessage);
-        }
+    public static void printEditMessage1() {
+        System.out.println("출석을 수정하려는 크루의 닉네임을 입력해 주세요.");
     }
 
+    public static void printEditMessage2() {
+        System.out.println("수정하려는 날짜(일)를 입력해 주세요.");
+    }
+
+    public static void printEditMessage3(){
+        System.out.println("언제로 변경하겠습니까?");
+    }
+
+    public static void printEditMessage4(Crew crew) {
+        System.out.printf("12월 %d일 %s %s (%s) -> %s (%s) 수정 완료!", crew.getDay(), crew.getDayOfWeek(),
+                crew.getPreTime(), crew.getPreStatus(), crew.getTime(), crew.getStatus());
+    }
 }

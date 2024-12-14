@@ -46,4 +46,12 @@ public class AttendanceRepository {
     public void saveCrewInRepository(Crew crew) {
         repository.add(crew);
     }
+
+    public Crew findCrew(String targetName, int targetDay) {
+        return repository.stream()
+                .filter(crew -> crew.getName().equals(targetName))
+                .filter(crew -> crew.getDay() == targetDay)
+                .findFirst()
+                .get();
+    }
 }

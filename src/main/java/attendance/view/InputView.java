@@ -25,6 +25,11 @@ public class InputView {
         return input;
     }
 
+    public static int requestEditDay() {
+        String input = Console.readLine().trim();
+        return parseInteger(input);
+    }
+
     private static void validateTimeAndMinute(String[] temp) {
         int time = parseInteger(temp[0]);
         int minute = parseInteger(temp[1]);
@@ -55,7 +60,9 @@ public class InputView {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("");
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력해주세요.");
         }
     }
+
+
 }
